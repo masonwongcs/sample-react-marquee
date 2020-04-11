@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import logo from "../logo.svg";
 import "../App.css";
 // import Marquee from "react-simple-marquee";
@@ -7,9 +7,11 @@ import Marquee from "../Marquee";
 const App = () => {
   const [marquee, setMarquee] = useState(false);
 
-  setInterval(() => {
-    setMarquee(!marquee);
-  }, 2000);
+  useEffect(()=>{
+    setInterval(() => {
+      setMarquee(!marquee);
+    }, 2000);
+  }, [])
 
   return (
     <div className="App">
