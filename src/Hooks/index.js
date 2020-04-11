@@ -9,7 +9,7 @@ const App = () => {
 
   useEffect(()=>{
     setInterval(() => {
-      setMarquee(!marquee);
+      setMarquee(prevMarquee => !prevMarquee);
     }, 2000);
   }, [])
 
