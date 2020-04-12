@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import moment from "moment";
+import {
+  subDays,
+  addSeconds,
+  format,
+  parseISO,
+  differenceInSeconds
+} from "date-fns";
+// import moment from "moment";
 
 type Duration = "days" | "hours" | "seconds";
 
 export const useClockDigit = ({
   seconds,
-  duration,
+  duration
 }: {
   seconds: number;
   duration: Duration;
@@ -26,16 +33,22 @@ export const useClockDigit = ({
   }, [seconds]);
 
   useEffect(() => {
-    const flipClockInterval = setInterval(function () {
+    const flipClockInterval = setInterval(function() {
       if (currentSeconds < 0) {
         clearInterval(flipClockInterval);
         return;
       }
 
-      const formatted = moment
-        .utc(currentSeconds * 1000)
-        .subtract(1, "days")
-        .format("DDDD:HH:mm:ss");
+      const now = Date.now();
+      const totalSeconds = currentSeconds;
+      const minusDay = subDays(now / 1000 + totalSeconds, 1);
+      const formatted = format(minusDay, "DDD:HH:mm:ss");
+
+      console.log(now + totalSeconds);
+      // const formatted = moment
+      //   .utc(currentSeconds * 1000)
+      //   .subDays(1, "days")
+      //   .format("DDDD:HH:mm:ss");
 
       const day1 = Number(formatted[0]);
       const day2 = Number(formatted[1]);
@@ -81,6 +94,6 @@ export const useClockDigit = ({
     minute1TranslateY,
     minute2TranslateY,
     second1TranslateY,
-    second2TranslateY,
+    second2TranslateY
   };
 };

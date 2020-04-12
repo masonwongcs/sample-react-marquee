@@ -3,7 +3,7 @@ import logo from "../logo.svg";
 import "../App.css";
 // import Marquee from "react-simple-marquee";
 // import Marquee from "../Marquee";
-import Flipclock from "../Flipclock";
+import Flipclock from "react-simple-flipclock";
 
 const App = () => {
   const [marquee, setMarquee] = useState(false);
@@ -17,13 +17,13 @@ const App = () => {
   return (
     <div className="App">
       {/*{marquee && <Marquee speed={10}>Testing</Marquee>}*/}
-      <Flipclock seconds={365 * 24 * 60 * 60} dark fontSize={48} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
 
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <Flipclock seconds={20 * 60 * 60} dark fontSize={48} />
         <a
           className="App-link"
           href="https://reactjs.org"
